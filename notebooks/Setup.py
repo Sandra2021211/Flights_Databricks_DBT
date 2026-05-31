@@ -8,14 +8,18 @@ dbutils.fs.mkdirs("/Volumes/workspace/raw/rawvolume/rawdata/airports")
 
 # COMMAND ----------
 
-dbutils.fs.mkdirs("/Volumes/workspace/raw/rawvolume/rawdata/bookings")
+# MAGIC %sql
+# MAGIC CREATE SCHEMA workspace.bronze
 
 # COMMAND ----------
 
-dbutils.fs.mkdirs("/Volumes/workspace/raw/rawvolume/rawdata/customers")
+# MAGIC %sql
+# MAGIC CREATE SCHEMA workspace.silver
 
 # COMMAND ----------
 
-dbutils.fs.mkdirs("/Volumes/workspace/raw/rawvolume/rawdata/flights")
+# MAGIC %sql
+# MAGIC CREATE SCHEMA workspace.gold
 
 # COMMAND ----------
+
