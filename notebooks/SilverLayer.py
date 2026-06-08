@@ -1,7 +1,11 @@
 # Databricks notebook source
-# Pyspark Transformations
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC Bookings
 
 # COMMAND ----------
 
@@ -20,7 +24,56 @@ df = df.withColumn("amount", col("amount").cast(DoubleType()))\
 display(df)
 
 # COMMAND ----------
-# DLT/ Lakeflow Declarative Pipelines
+
+# MAGIC %md
+# MAGIC Flights
+
+# COMMAND ----------
+
+df=spark.read.format("delta").load("/Volumes/workspace/bronze/bronzevolume/flights/data/")
+display(df)
+
+# COMMAND ----------
+
+df = df.withColumn("flight_date", to_date(col("flight_date"))).drop("_rescued_data").withColumn("modifiedDate", current_timestamp())
+
+display(df)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC Customers
+
+# COMMAND ----------
+
+df=spark.read.format("delta").load("/Volumes/workspace/bronze/bronzevolume/customers/data/")
+
+display(df)
+
+# COMMAND ----------
+
+df = df.drop("_rescued_data").withColumn("modified_date", current_timestamp())
+
+display(df)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC Airports
+
+# COMMAND ----------
+
+df=spark.read.format("delta").load("/Volumes/workspace/bronze/bronzevolume/airports/data/")
+
+display(df)
+
+# COMMAND ----------
+
+df = df.drop("_rescued_data").withColumn("modified_date", current_timestamp())
+
+display(df)
+
+# COMMAND ----------
 
 import dlt 
 from pyspark.sql.functions import *
@@ -65,3 +118,13 @@ rules = {
 def silver_bookings():
     df = spark.readStream.table("trans_bookings")
     return df
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC Querying after the DLT Pipeline
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM workspace.silver.silver_airports;
