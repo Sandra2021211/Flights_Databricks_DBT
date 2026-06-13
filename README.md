@@ -122,13 +122,13 @@ without any code changes.
 
 Bronze Notebook
 
-Insert Bronze Auto Loader Notebook Screenshot Here
+![alt text](image-1.png)
 
 ⸻
 
 Bronze Data
 
-Insert Bronze Tables Screenshot Here
+![alt text](image-2.png)
 
 ⸻
 
@@ -159,10 +159,11 @@ Benefits
 
 ⸻
 
-Workflow Screenshot
+![alt text](image-3.png)
 
-Insert Databricks Workflow Screenshot Here
+Bronze Ingestion Pipeline
 
+![alt text](image-4.png)
 ⸻
 
 🥈 Silver Layer
@@ -424,22 +425,6 @@ Insert Screenshot
 
 ⸻
 
-
-
-:::
-One more suggestion: rename the repository to something like:
-```text
-databricks-flight-booking-medallion-architecture
-
-or
-
-end-to-end-databricks-data-engineering-project
-
-rather than a generic name. Recruiters often judge projects from the repository title before they even open the README.
-
-📚 Key Learnings
-
-Through this project I gained hands-on experience with:
 
 📚 Key Learnings
 
